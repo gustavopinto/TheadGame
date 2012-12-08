@@ -14,7 +14,7 @@ public class ConcurrentQuickSort extends QuickSort {
 
     private class SortingRecursiveTask extends RecursiveTask<int[]> {
 
-        private static final int LIST_LENGTH_THRESHOLD_FOR_FORKING = 2;
+        private static final int LIST_LENGTH_THRESHOLD_FOR_FORKING = 25000;
 
         private int[] list;
 
@@ -38,19 +38,13 @@ public class ConcurrentQuickSort extends QuickSort {
 
             SortingRecursiveTask taskA = null;
             if (j > LIST_LENGTH_THRESHOLD_FOR_FORKING) {
-                if (0 < j) {
-                    int[] subList = subList(list, 0, j);
-                    taskA = new SortingRecursiveTask(subList);
-                    taskA.fork();
-                }
+                taskA = new SortingRecursiveTask(subList(list, 0, j));
+                taskA.fork();
             }
             SortingRecursiveTask taskB = null;
             if (list.length - 1 - i > LIST_LENGTH_THRESHOLD_FOR_FORKING) {
-                if (i < list.length - 1) {
-                    int[] subList = subList(list, i, list.length - 1);
-                    taskB = new SortingRecursiveTask(subList);
-                    taskB.fork();
-                }
+                taskB = new SortingRecursiveTask(subList(list, i, list.length - 1));
+                taskB.fork();
             }
             int[] sortedA = null;
             int[] sortedB = null;

@@ -1,15 +1,23 @@
 package mergesort;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.ArrayList;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class QuickSortTestBase {
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(QuickSortTestBase.class);
+
     protected static int[] generateRandomList(int length) {
+        long timeA = System.currentTimeMillis();
         int[] result = new int[length];
         for (int i = 0; i < length; i++) {
             result[i] = ThreadLocalRandom.current().nextInt();
         }
+        long timeB = System.currentTimeMillis();
+        LOGGER.info("{} random ints generated in {}s.", length, ((float) (timeB - timeA)) / 1000);
         return result;
     }
 

@@ -25,11 +25,8 @@ public abstract class QuickSort {
     }
 
     protected int[] quickSortPartial(int[] list, int low, int high) {
-        if (low < high) {
-            int[] subList = subList(list, low, high);
-            return quicksort(subList);
-        }
-        return list;
+        int[] subList = subList(list, low, high);
+        return quicksort(subList);
     }
 
     protected static int[] combinePartialLists(int[] list, int[] listA, int endIndexA, int startIndexB, int[] listB) {
@@ -40,6 +37,9 @@ public abstract class QuickSort {
     }
 
     protected static int[] subList(int[] list, int low, int high) {
+        if (low >= high) {
+            return new int[0];
+        }
         int subListALength = high - low + 1;
         int[] subList = new int[subListALength];
         System.arraycopy(list, low, subList, 0, subListALength);
