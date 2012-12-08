@@ -1,28 +1,8 @@
 package mergesort;
 
-public class QuickSort {
+public class QuickSortBase {
 
-    public int[] quicksort(int[] list) {
-        if (list == null || list.length == 0 ) {
-            return new int[0];
-        }
-        if (list.length == 1) {
-            return list;
-        }
-
-        AlgorithmResult algorithmResult = algorithm(list);
-        list = algorithmResult.getList();
-        int i = algorithmResult.getI();
-        int j = algorithmResult.getJ();
-
-        int[] sortedA = quickSortPartial(list, 0, j);
-        int[] sortedB = quickSortPartial(list, i, list.length - 1);
-        list = combinePartialLists(list, sortedA, j, i, sortedB);
-
-        return list;
-    }
-
-    private AlgorithmResult algorithm(int[] list) {
+    protected AlgorithmResult algorithm(int[] list) {
         int pivot = list[list.length / 2];
         int i = 0;
         int j = list.length - 1;
@@ -42,22 +22,14 @@ public class QuickSort {
         return new AlgorithmResult(list, i, j);
     }
 
-    private int[] quickSortPartial(int[] list, int low, int high) {
-        if (low < high) {
-            int[] subList = subList(list, low, high);
-            return quicksort(subList);
-        }
-        return list;
-    }
-
-    private static int[] combinePartialLists(int[] list, int[] listA, int endIndexA, int startIndexB, int[] listB) {
+    protected static int[] combinePartialLists(int[] list, int[] listA, int endIndexA, int startIndexB, int[] listB) {
         int[] result = list.clone();
         result = overwriteList(result, 0, endIndexA, listA);
         result = overwriteList(result, startIndexB, list.length - 1, listB);
         return result;
     }
 
-    private static int[] subList(int[] list, int low, int high) {
+    protected static int[] subList(int[] list, int low, int high) {
         int subListALength = high - low + 1;
         int[] subList = new int[subListALength];
         System.arraycopy(list, low, subList, 0, subListALength);
@@ -81,7 +53,7 @@ public class QuickSort {
         return result;
     }
 
-    private final class AlgorithmResult {
+    protected final class AlgorithmResult {
 
         final int[] list;
         final int i;

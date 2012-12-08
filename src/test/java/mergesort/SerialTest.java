@@ -2,8 +2,6 @@ package mergesort;
 
 import org.junit.Test;
 
-import java.util.concurrent.ThreadLocalRandom;
-
 import static org.junit.Assert.assertTrue;
 
 public class SerialTest extends QuickSortTestBase {
@@ -17,7 +15,7 @@ public class SerialTest extends QuickSortTestBase {
         for (int tries = 0; tries < nTries; tries++) {
             int[] list = generateRandomList(listLength);
             long timeA = System.currentTimeMillis();
-            int[] result = new QuickSort().quicksort(list);
+            int[] result = new SerialQuickSort().quicksort(list);
             long timeB = System.currentTimeMillis();
             assertTrue(validate(result));
             times[tries] = ((float) (timeB - timeA)) / 1000;
