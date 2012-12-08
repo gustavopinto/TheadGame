@@ -1,6 +1,6 @@
 package mergesort;
 
-public class SerialQuickSort extends QuickSortBase {
+public class SerialQuickSort extends QuickSort {
 
     public int[] quicksort(int[] list) {
         if (list == null || list.length == 0 ) {
@@ -19,14 +19,6 @@ public class SerialQuickSort extends QuickSortBase {
         int[] sortedB = quickSortPartial(list, i, list.length - 1);
         list = combinePartialLists(list, sortedA, j, i, sortedB);
 
-        return list;
-    }
-
-    private int[] quickSortPartial(int[] list, int low, int high) {
-        if (low < high) {
-            int[] subList = subList(list, low, high);
-            return quicksort(subList);
-        }
         return list;
     }
 }

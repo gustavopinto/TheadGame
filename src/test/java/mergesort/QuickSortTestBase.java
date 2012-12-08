@@ -13,7 +13,7 @@ public class QuickSortTestBase {
         return result;
     }
 
-    protected static boolean validate(int[] list) {
+    protected static boolean validateOrder(int[] list) {
         for (int i = 0; i < list.length - 1; i++) {
             if (list[i] > list[i + 1]) {
                 return false;
@@ -28,5 +28,13 @@ public class QuickSortTestBase {
             list.add(k);
         }
         return list;
+    }
+
+    protected static float average(float[] list) {
+        float sum = 0;
+        for (float x : list) {
+            sum += x;
+        }
+        return sum / list.length;
     }
 }

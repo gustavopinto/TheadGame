@@ -1,6 +1,8 @@
 package mergesort;
 
-public class QuickSortBase {
+public abstract class QuickSort {
+
+    public abstract int[] quicksort(int[] list);
 
     protected AlgorithmResult algorithm(int[] list) {
         int pivot = list[list.length / 2];
@@ -20,6 +22,14 @@ public class QuickSortBase {
             }
         }
         return new AlgorithmResult(list, i, j);
+    }
+
+    protected int[] quickSortPartial(int[] list, int low, int high) {
+        if (low < high) {
+            int[] subList = subList(list, low, high);
+            return quicksort(subList);
+        }
+        return list;
     }
 
     protected static int[] combinePartialLists(int[] list, int[] listA, int endIndexA, int startIndexB, int[] listB) {
