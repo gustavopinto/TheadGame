@@ -17,7 +17,7 @@ public class SerialTest {
         for (int tries = 0; tries < nTries; tries++) {
             int[] list = generateRandomList(listLength);
             long timeA = System.currentTimeMillis();
-            int[] result = QuickSort.quicksort(list);
+            int[] result = new QuickSort().quicksort(list);
             long timeB = System.currentTimeMillis();
             assertTrue(validate(result));
             times[tries] = ((float) (timeB - timeA)) / 1000;
