@@ -6,7 +6,7 @@ import java.util.concurrent.ThreadLocalRandom;
 
 import static org.junit.Assert.assertTrue;
 
-public class SerialTest {
+public class SerialTest extends QuickSortTestBase {
 
     @Test
     public void testSerial() {
@@ -29,24 +29,7 @@ public class SerialTest {
         System.out.printf("List length was %d .", listLength);
     }
 
-    private int[] generateRandomList(int length) {
-        int[] result = new int[length];
-        for (int i = 0; i < length; i++) {
-            result[i] = ThreadLocalRandom.current().nextInt();
-        }
-        return result;
-    }
-
-    private boolean validate(int[] list) {
-        for (int i = 0; i < list.length - 1; i++) {
-            if (list[i] > list[i + 1]) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    private float average(float[] list) {
+    private static float average(float[] list) {
         float sum = 0;
         for (int i = 0; i < list.length; i++) {
             sum += list[i];

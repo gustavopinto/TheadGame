@@ -7,10 +7,10 @@ import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-public class QuickSortTest {
+public class QuickSortTest extends QuickSortTestBase {
 
     @Test
-    public void testSim() throws Exception {
+    public void testNormal() throws Exception {
         assertEquals(toList(new int[]{ 0, 1, 2, 6, 7, 9, 15 }),
                 toList(new QuickSort().quicksort(new int[]{ 2, 6, 1, 15, 9, 0, 7 })));
     }
@@ -18,7 +18,7 @@ public class QuickSortTest {
     @Test
     public void testInverse() throws Exception {
         assertEquals(toList(new int[]{ 0, 1, 2, 6, 7, 9, 15 }),
-            toList(new QuickSort().quicksort(new int[]{ 15, 9, 7, 6, 2, 1, 0 })));
+                toList(new QuickSort().quicksort(new int[]{ 15, 9, 7, 6, 2, 1, 0 })));
     }
 
     @Test
@@ -43,11 +43,11 @@ public class QuickSortTest {
                 toList(new QuickSort().quicksort(new int[]{ 1, 1, 1, 1, 1 })));
     }
 
-    private ArrayList<Integer> toList(int[] array) {
-        ArrayList<Integer> list = new ArrayList<Integer>();
-        for (int k : array) {
-            list.add(k);
+    @Test
+    public void testRandomLarge() throws Exception {
+        for (int i = 0; i < 3; i++) {
+            int[] list = generateRandomList(100);
+            assertTrue(validate(new QuickSort().quicksort(list)));
         }
-        return list;
     }
 }

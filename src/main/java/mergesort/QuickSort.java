@@ -42,31 +42,6 @@ public class QuickSort {
         return new AlgorithmResult(list, i, j);
     }
 
-    private final class AlgorithmResult {
-
-        final int[] list;
-        final int i;
-        final int j;
-
-        private AlgorithmResult(int[] list, int i, int j) {
-            this.list = list;
-            this.i = i;
-            this.j = j;
-        }
-
-        public int[] getList() {
-            return list;
-        }
-
-        public int getI() {
-            return i;
-        }
-
-        public int getJ() {
-            return j;
-        }
-    }
-
     private int[] quickSortPartial(int[] list, int low, int high) {
         if (low < high) {
             int[] subList = subList(list, low, high);
@@ -104,5 +79,30 @@ public class QuickSort {
         result[i] = result[j];
         result[j] = temp;
         return result;
+    }
+
+    private final class AlgorithmResult {
+
+        final int[] list;
+        final int i;
+        final int j;
+
+        private AlgorithmResult(int[] list, int i, int j) {
+            this.list = list;
+            this.i = i;
+            this.j = j;
+        }
+
+        public int[] getList() {
+            return list;
+        }
+
+        public int getI() {
+            return i;
+        }
+
+        public int getJ() {
+            return j;
+        }
     }
 }
