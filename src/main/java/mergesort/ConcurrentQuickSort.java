@@ -5,7 +5,8 @@ import java.util.concurrent.RecursiveTask;
 
 public class ConcurrentQuickSort extends QuickSort {
 
-    private static final int PARALLELISM = 4;
+    private static final int PARALLELISM = 8;
+    private static final int FORKING_THRESHOLD = 1250000;
 
     ForkJoinPool pool = new ForkJoinPool(PARALLELISM);
 
@@ -15,8 +16,6 @@ public class ConcurrentQuickSort extends QuickSort {
     }
 
     private class SortingRecursiveTask extends RecursiveTask<int[]> {
-
-        private static final int LIST_LENGTH_THRESHOLD_FOR_FORKING = 2500000; // 11 million
 
         private int[] list;
 
@@ -39,13 +38,13 @@ public class ConcurrentQuickSort extends QuickSort {
             int j = algorithmResult.getJ();
 
             SortingRecursiveTask taskA = null;
-            if (j > LIST_LENGTH_THRESHOLD_FOR_FORKING) {
+            if (j > FORKING_THRESHOLD) {
 //                throw new RuntimeException("partial list should not be longer than original list");
                 taskA = new SortingRecursiveTask(subList(list, 0, j));
                 taskA.fork();
             }
             SortingRecursiveTask taskB = null;
-            if (list.length - 1 - i > LIST_LENGTH_THRESHOLD_FOR_FORKING) {
+            if (list.length - 1 - i > FORKING_THRESHOLD) {
 //                throw new RuntimeException("partial list should not be longer than original list");
                 taskB = new SortingRecursiveTask(subList(list, i, list.length - 1));
                 taskB.fork();
