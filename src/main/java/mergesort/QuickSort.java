@@ -1,5 +1,7 @@
 package mergesort;
 
+import java.util.Arrays;
+
 public abstract class QuickSort {
 
     public abstract int[] quicksort(int[] list);
@@ -30,37 +32,31 @@ public abstract class QuickSort {
     }
 
     protected static int[] combinePartialLists(int[] list, int[] listA, int endIndexA, int startIndexB, int[] listB) {
-        int[] result = list.clone();
-        result = overwriteList(result, 0, endIndexA, listA);
-        result = overwriteList(result, startIndexB, list.length - 1, listB);
-        return result;
+        list = overwriteList(list, 0, endIndexA, listA);
+        list = overwriteList(list, startIndexB, list.length - 1, listB);
+        return list;
     }
 
     protected static int[] subList(int[] list, int low, int high) {
         if (low >= high) {
             return new int[0];
         }
-        int subListALength = high - low + 1;
-        int[] subList = new int[subListALength];
-        System.arraycopy(list, low, subList, 0, subListALength);
-        return subList;
+        return Arrays.copyOfRange(list, low, high + 1);
     }
 
     private static int[] overwriteList(int[] overwritedList, int startIndex, int endIndex, int[] overwritingList) {
         if (startIndex < endIndex) {
-            int[] result = overwritedList.clone();
-            System.arraycopy(overwritingList, 0, result, startIndex, overwritingList.length);
-            return result;
+            System.arraycopy(overwritingList, 0, overwritedList, startIndex, overwritingList.length);
+            return overwritedList;
         }
         return overwritedList;
     }
 
     private static int[] exchangeIn(int[] list, int i, int j) {
-        int[] result = list.clone();
-        int temp = result[i];
-        result[i] = result[j];
-        result[j] = temp;
-        return result;
+        int temp = list[i];
+        list[i] = list[j];
+        list[j] = temp;
+        return list;
     }
 
     protected final class AlgorithmResult {

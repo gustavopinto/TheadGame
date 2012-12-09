@@ -11,7 +11,7 @@ import static org.junit.Assert.assertTrue;
 public class TimeTest extends QuickSortTestBase {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(TimeTest.class);
-    private static final int LIST_LENGTH = 50000;
+    private static final int LIST_LENGTH = 2000000;
     private static final int N_TESTS = 3;
 
     @Test
@@ -27,6 +27,19 @@ public class TimeTest extends QuickSortTestBase {
         }
         LOGGER.info("Serial sorting in {}s.", average(serialTimes));
         LOGGER.info("Concurrent sorting in {}s.", average(concurrentTimes));
+        LOGGER.info("Result is an average of {} runs.", N_TESTS);
+        LOGGER.info("List length was {} .\n", LIST_LENGTH);
+    }
+
+    @Test
+    public void profileSerial() {
+        float[] serialTimes = new float[N_TESTS];
+        for (int tries = 0; tries < N_TESTS; tries++) {
+            int[] list = generateRandomList(LIST_LENGTH);
+            serialTimes[tries] = testTime(new SerialQuickSort(), list);
+            LOGGER.debug("{}. serial sorted.", tries + 1);
+        }
+        LOGGER.info("Serial sorting in {}s.", average(serialTimes));
         LOGGER.info("Result is an average of {} runs.", N_TESTS);
         LOGGER.info("List length was {} .\n", LIST_LENGTH);
     }
