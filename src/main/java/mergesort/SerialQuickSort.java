@@ -37,9 +37,7 @@ public class SerialQuickSort extends QuickSort {
 
             int[] sortedA = quickSortPartial(list, 0, j);
             int[] sortedB = quickSortPartial(list, i, list.length - 1);
-            list = combinePartialLists(list, sortedA, j, i, sortedB);
-
-            return list;
+            return combinePartialLists(list, sortedA, j, i, sortedB);
         }
     }
 }
