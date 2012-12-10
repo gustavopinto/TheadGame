@@ -26,11 +26,6 @@ public abstract class QuickSort {
         return new AlgorithmResult(list, i, j);
     }
 
-    protected int[] quickSortPartial(int[] list, int low, int high) {
-        int[] subList = subList(list, low, high);
-        return quicksort(subList);
-    }
-
     protected static int[] combinePartialLists(int[] list, int[] listA, int endIndexA, int startIndexB, int[] listB) {
         list = overwriteList(list, 0, endIndexA, listA);
         list = overwriteList(list, startIndexB, list.length - 1, listB);

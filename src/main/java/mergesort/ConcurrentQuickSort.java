@@ -50,10 +50,10 @@ public class ConcurrentQuickSort extends QuickSort {
             int[] sortedA = null;
             int[] sortedB = null;
             if (taskA == null) {
-                sortedA = quickSortPartial(list, 0, j);
+                sortedA = quicksort(subList(list, 0, j));
             }
             if (taskB == null) {
-                sortedB = quickSortPartial(list, i, list.length - 1);
+                sortedB = quicksort(subList(list, i, list.length - 1));
             }
             if (taskA != null) {
                 sortedA = taskA.join();

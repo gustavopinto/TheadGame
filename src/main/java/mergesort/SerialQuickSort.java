@@ -15,8 +15,8 @@ public class SerialQuickSort extends QuickSort {
         int i = algorithmResult.getI();
         int j = algorithmResult.getJ();
 
-        int[] sortedA = quickSortPartial(list, 0, j);
-        int[] sortedB = quickSortPartial(list, i, list.length - 1);
+        int[] sortedA = quicksort(subList(list, 0, j));
+        int[] sortedB = quicksort(subList(list, i, list.length - 1));
         return combinePartialLists(list, sortedA, j, i, sortedB);
     }
 }
