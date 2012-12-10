@@ -49,13 +49,13 @@ public class ConcurrentQuickSort extends QuickSort {
 //                taskB = new SortingRecursiveTask(subList(list, i, list.length - 1));
 //                taskB.fork();
 //            }
-            int[] sortedA = null;
-            int[] sortedB = null;
+//            int[] sortedA = null;
+//            int[] sortedB = null;
 //            if (taskA == null) {
-                sortedA = quickSortPartial(list, 0, j);
+            int[] sortedA = quickSortPartial(list, 0, j);
 //            }
 //            if (taskB == null) {
-                sortedB = quickSortPartial(list, i, list.length - 1);
+            int[] sortedB = quickSortPartial(list, i, list.length - 1);
 //            }
 //            if (taskA != null) {
 //                throw  new RuntimeException("partial list should not be longer than original list");

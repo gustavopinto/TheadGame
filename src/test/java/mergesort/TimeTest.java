@@ -19,11 +19,12 @@ public class TimeTest extends QuickSortTestBase {
         float[] serialTimes = new float[N_TESTS];
         float[] concurrentTimes = new float[N_TESTS];
         for (int tries = 0; tries < N_TESTS; tries++) {
-            int[] list = generateRandomList(LIST_LENGTH);
-            serialTimes[tries] = testTime(new SerialQuickSort(), list);
-            LOGGER.debug("{}. serial sorted.", tries + 1);
-            concurrentTimes[tries] = testTime(new ConcurrentQuickSort(), list);
-            LOGGER.debug("{}. concurrent sorted.", tries + 1);
+            int[] listForSerial = generateRandomList(LIST_LENGTH);
+            int[] listForConcurrent = listForSerial.clone();
+            LOGGER.debug("{}. serial sorting...", tries + 1);
+            serialTimes[tries] = testTime(new SerialQuickSort(), listForSerial);
+            LOGGER.debug("{}. concurrent sorting...", tries + 1);
+            concurrentTimes[tries] = testTime(new ConcurrentQuickSort(), listForConcurrent);
         }
         LOGGER.info("Result is an average of {} runs.", N_TESTS);
         LOGGER.info("List length was {} .\n", LIST_LENGTH);

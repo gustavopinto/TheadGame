@@ -31,7 +31,7 @@ public class SerialQuickSort extends QuickSort {
             }
 
             AlgorithmResult algorithmResult = algorithm(list);
-            list = algorithmResult.getList();
+            int[] list = algorithmResult.getList();
             int i = algorithmResult.getI();
             int j = algorithmResult.getJ();
 
